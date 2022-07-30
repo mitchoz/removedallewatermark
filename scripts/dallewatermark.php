@@ -12,6 +12,7 @@
 	foreach($files as $f){
 		
 		$file = DIR."/import/".$f;
+		$ext = pathinfo($file, PATHINFO_EXTENSION);
 		
 		$im = imagecreatefrompng($file);
 		
@@ -20,9 +21,9 @@
 		$im2 = imagecrop($im, ['x' => 0, 'y' => 0, 'width' => $size - 16, 'height' => $size - 16]);
 		
 		if ($im2 !== FALSE) {
-			imagepng($im2, DIR."/data/g".$c.".png");
+			imagepng($im2, DIR."/export/g".$c.".".$ext);
 			
-			echo "Saved: ".DIR."/data/g".$c.".png"."<br />";
+			echo "Saved: ".DIR."/export/g".$c.".".$ext."<br />";
 			
 			imagedestroy($im2);
 		}
